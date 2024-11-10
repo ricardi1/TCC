@@ -22,10 +22,10 @@ $sql = "UPDATE fornecedor
             uf = '$uf',
             cnpj = '$cnpj',
             email = '$email',
-            telefone = $telefone
+            telefone = '$telefone'
         WHERE idFornecedor = $id";
 
-echo $atualizar = mysqli_query($conexao, $sql);
+$atualizar = mysqli_query($conexao, $sql);
 
 ?>
 

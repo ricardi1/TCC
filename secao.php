@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Usuário</title>
+        <title>SIGRP</title>
         <script src="https://kit.fontawesome.com/642a493c63.js" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </head>
     <body>
 
@@ -56,66 +55,52 @@
     </div>
     </nav>
 
-    <div class="container" style="margin-top: 90px; width: 900px;">
-        <h3>Usuário</h3>
+    <div class="container" style="margin-top: 90px; width: 700px;">
+        <h3>Seção</h3>
         <br>
         <div style="text-align: right;">
-            <a class="btn btn-sm btn-success" href="adicionar_usuario.php" role="button"><i class="fa-regular fa-file"></i>&nbsp;Novo</a>
+            <a class="btn btn-sm btn-success" href="adicionar_secao.php" role="button"><i class="fa-regular fa-file"></i>&nbsp;Novo</a>
         </div>
         <table class="table table-hover">
             <thead>
                 <tr>
+                <th scope="col">Código</th>
                 <th scope="col">Nome</th>
-                <th scope="col">E-mail</th>
-                <th scope="col">Status</th>
-                <th scope="col">Perfil</th>
+                <th scope="col">Chefe</th>
                 <th scope="col">Ações</th>
                 </tr>
             </thead>
             <tbody>
                     <?php
                         include 'conexao.php';
-                        $sql = "SELECT usuario.idUsuario,
-                                       usuario.nome,
-                                       usuario.email,
-                                       usuario.senha,
-                                       usuario.dataCriacao,
-                                       case usuario.status
-                                       when 1 then 'Ativo'
-                                       when 0 then 'Inativo' end as status,
-                                       perfilusuario.nome AS perfil
-                                FROM usuario
-                                LEFT JOIN perfilusuario ON idPerfilUsuario = PerfilUsuario_idPerfilUsuario
-                                ORDER BY usuario.nome";
+                        $sql =  "SELECT secao.idSecao,
+                                        secao.codSecao,
+                                        secao.nomeSecao,
+                                        usuario.nome AS chefeSecao
+                                FROM secao
+                                LEFT JOIN usuario ON usuario.idUsuario = secao.Usuario_idUsuarioChefe ORDER BY codSecao";
                         $buscar = mysqli_query($conexao, $sql);
 
                         while ($array = mysqli_fetch_array($buscar)) {
-
-                            $idUsuario  = $array['idUsuario'];
-                            $nome = $array['nome'];
-                            $email = $array['email'];
-                            $dataCriacao = $array['dataCriacao'];
-                            $status = $array['status'];
-                            $PerfilUsuario_idPerfilUsuario = $array['perfil'];
-
+                            $idSecao = $array['idSecao'];
+                            $codSecao = $array['codSecao'];
+                            $nomeSecao = $array['nomeSecao'];
+                            $chefeSecao = $array['chefeSecao'];
                     ?>
                 <tr>
-                    <td><?php echo $nome ?></td>
-                    <td><?php echo $email ?></td>
-                    <td><?php echo $status ?></td>
-                    <td><?php echo $PerfilUsuario_idPerfilUsuario ?></td>
-                    
-                    <td>
-                        <a class="btn btn-warning btn-sm" href="editar_usuario.php?id=<?php echo $idUsuario ?>" role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa-regular fa-pen-to-square"></i></a>
+                    <td><?php echo $codSecao ?></td>
+                    <td><?php echo $nomeSecao ?></td>
+                    <td><?php echo $chefeSecao ?></td>
+                    <td><a class="btn btn-warning btn-sm" href="editar_secao.php?id=<?php echo $idSecao ?>" role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa-regular fa-pen-to-square"></i></a>
 
-                        <a class="btn btn-danger btn-sm" href="deletar_usuario.php?id=<?php echo $idUsuario ?>" role="button" data-toggle="tooltip" data-placement="top" title="Apagar"><i class="fa-regular fa-trash-can"></i></a></td>
+                        <a class="btn btn-danger btn-sm" href="deletar_secao.php?id=<?php echo $idSecao ?>" role="button" data-toggle="tooltip" data-placement="top" title="Apagar"><i class="fa-regular fa-trash-can"></i></a></td>
 
             <?php } ?>
                 </tr>
             </tbody>
             </table>
         <div style="text-align: right;">
-            <a href="menu.php" role="button" class="btn btn-sm btn-primary"><i class="fa-solid fa-chevron-left"></i>&nbsp;Voltar</a>
+            <a href="index.php" role="button" class="btn btn-sm btn-primary"><i class="fa-solid fa-chevron-left"></i>&nbsp;Voltar</a>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

@@ -56,11 +56,11 @@
     </nav>
 
     <div class="container-fluid" style="margin-top: 90px; width: 90%;" >
-        <h4>Requisição de Pagamento</h4>
+        <h4>Lista de pagamentos pendentes de aprovação do gestor do departamento</h4>
         <br>
-        <div style="text-align: right;">
+        <!-- <div style="text-align: right;">
             <a class="btn btn-sm btn-success" href="adicionar_requisicaopagamento.php" role="button"><i class="fa-regular fa-file"></i>&nbsp;Novo</a>
-        </div>
+        </div> -->
         <table class="table table-sm table-hover">
             <thead>
                 <tr>
@@ -70,7 +70,6 @@
                 <th scope="col">Data Vencimento</th>
                 <th scope="col">Nota Fiscal</th>
                 <th scope="col">Data da Requisição</th>
-                <th scope="col">Status</th>
                 <th scope="col">Meio de Pagamento</th>
                 <th scope="col">Fornecedor</th>
                 <th scope="col">Orçamento</th>
@@ -135,16 +134,19 @@
                     <td><?php echo $dataVencimento ?></td>
                     <td><?php echo $numeroNF ?></td>
                     <td><?php echo $dataRequisicao ?></td>
-                    <td><?php echo $status ?></td>
                     <td><?php echo $MeioPagamento_idMeioPagamento ?></td>
                     <td><?php echo $Fornecedor_idFornecedor ?></td>
                     <td><?php echo $Orcamento_idOrcamento ?></td>
                     <td><?php echo $Usuario_idUsuario ?></td>
                     <td><?php echo $CCustos_idCCustos ?></td>
-                    <td><a class="btn btn-warning btn-sm" href="editar_requisicaopagamento.php?id=<?php echo $idRequisicaoPagamento ?>" role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa-regular fa-pen-to-square"></i></a>
 
-                        <a class="btn btn-danger btn-sm" href="deletar_requisicaopagamento.php?id=<?php echo $idRequisicaoPagamento ?>" role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa-regular fa-trash-can"></i></a></td>
+                    <?php
+                     if(($PerfilUsuario_idPerfilUsuario == 3)) {
+                    ?> 
+                    <td><a class="btn btn-success btn-sm" href="_atualizar_aprovacao_gestor.php?id=<?php echo $idRequisicaoPagamento ?>" role="button" data-toggle="tooltip" data-placement="top" title="Aprovar Pagamento"><i class="fa-solid fa-check"></i></a>
 
+                       <!-- <a class="btn btn-danger btn-sm" href="_atualizar_aprovacao_gestor.php?id=<?php echo $idRequisicaoPagamento ?>" role="button" data-toggle="tooltip" data-placement="top" title="Reprovar Pagamento"><i class="fa-solid fa-minus"></i></a></td> -->
+                    <?php } ?>
             <?php } ?>
                 </tr>
             </tbody>

@@ -39,7 +39,7 @@ $atualizar = mysqli_query($conexao, $sql);
     Usuário atualizado com sucesso!
     </div>
     <div style="margin-top: 10px">
-    <a class="btn btn-warning btn-sm" href="usuario.php" role="button"><i class="fa-solid fa-chevron-left"></i>&nbsp;Voltar</a>
+    <a class="btn btn-warning btn-sm" href="requisicaopagamento.php" role="button"><i class="fa-solid fa-chevron-left"></i>&nbsp;Voltar</a>
     </div>
 </center>    
 </div>

@@ -9,7 +9,7 @@ $id = $_GET['id'];
 <html>
 <head>
     <meta charset="urf-8">
-    <title>Atualizar Orcamento</title>
+    <title>SIRGP</title>
     <script src="https://kit.fontawesome.com/642a493c63.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
@@ -64,26 +64,45 @@ $id = $_GET['id'];
     </nav>
 
 <div class="container" id="tamanhoContainer" style="margin-top: 90px; width: 400px" >
-<h4>Atualizar Orçamento</h4>
-<form action="_atualizar_orcamento.php" method="post" style="margin-top: 20px;">
+<h4>Atualizar Meio de Pagamento</h4>
+<form action="_atualizar_secao.php" method="post" style="margin-top: 20px;">
         <?php
 
-            $sql = "SELECT * FROM orcamento WHERE idOrcamento = $id";
+            $sql = "SELECT * FROM secao WHERE secao.idSecao = $id";
             $buscar = mysqli_query($conexao, $sql);
 
             while ($array = mysqli_fetch_array($buscar)) {
-                $idOrcamento = $array['idOrcamento'];
-                $codigo = $array['codigo'];
-                $descricao = $array['descricao'];
+                $idSecao = $array['idSecao'];
+                $codSecao = $array['codSecao'];
+                $nomeSecao = $array['nomeSecao'];
+                $Usuario_idUsuarioChefe = $array['Usuario_idUsuarioChefe'];
 
         ?>
         <form>
         <div class="mb-3">
-        <label>Código do Orçamento</label>
+        <label>Código da Seção</label>
         <input type="number" class="form-control" name="id" value="<?php echo $id ?>" style="display: none;">
-        <input type="text" class="form-control" name="codigo" value="<?php echo $codigo ?>" disabled>
-        <label>Descrição do Orçamento</label>
-        <input type="text" class="form-control" name="descricao" value="<?php echo $descricao ?>">
+        <input type="number" class="form-control" name="codSecao" id="secao" value="<?php echo $codSecao ?>" disabled>
+        <label>Nome da Seção</label>
+        <input type="text" class="form-control" name="nomeSecao" value="<?php echo $nomeSecao ?>">
+        <label>Chefe da Seção</label>
+
+        <select class="form-select" name="Usuario_idUsuarioChefe">
+        <?php
+                include 'conexao.php';
+                $sql = "SELECT * FROM usuario ORDER BY nome";
+                $buscar = mysqli_query($conexao, $sql);
+
+                while ($array = mysqli_fetch_array($buscar)){
+                    $idUsuario = $array['idUsuario'];
+                    $nome = $array['nome'];
+                ?>
+
+                <option value="<?= $idUsuario?>"><?= $nome ?></option>
+
+                <?php } ?>
+        </select>
+
         </div>
 
     <div style="text-align: right;">
@@ -92,6 +111,11 @@ $id = $_GET['id'];
     <?php } ?>
 </form>
 </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript">
+        $('#secao').mask('00.00.00.00.00');
+    </script>
 </body>
 </html>

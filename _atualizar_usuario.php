@@ -5,11 +5,13 @@ include 'conexao.php';
 $id = $_POST['id'];
 $nome = $_POST['nome'];
 $senha = $_POST['senha'];
+$status = $_POST['status'];
 $PerfilUsuario_idPerfilUsuario = $_POST['PerfilUsuario_idPerfilUsuario'];
 
 $sql = "UPDATE usuario 
         SET nome ='$nome', 
-            senha = '$senha', 
+            senha = sha1('$senha'),
+            status = $status,
             PerfilUsuario_idPerfilUsuario = $PerfilUsuario_idPerfilUsuario 
         WHERE idUsuario = $id";
 

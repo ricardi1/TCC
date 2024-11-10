@@ -2,9 +2,11 @@
 
 include 'conexao.php';
 
-$descricao = $_POST['descricao'];
+$codSecao = $_POST['codSecao'];
+$nomeSecao = $_POST['nomeSecao'];
+$Usuario_idUsuarioChefe = $_POST['Usuario_idUsuarioChefe'];
 
-$sql = "INSERT INTO `meiopagamento`(descricao) values ('$descricao')";
+$sql = "INSERT INTO secao (codSecao, nomeSecao, Usuario_idUsuarioChefe) values ('$codSecao','$nomeSecao', $Usuario_idUsuarioChefe)";
 $inserir = mysqli_query($conexao,$sql);
 
 ?>
@@ -15,10 +17,10 @@ $inserir = mysqli_query($conexao,$sql);
 
     <center>
     <div style="margin-top: 10px" class="alert alert-success" role="alert">
-        Meio de pagamento cadastrado com sucesso!
+        Seção cadastrada com sucesso!
     </div>
     <div style="padding-top: 20px">
-    <a href="adicionar_meiopagamento.php" role="button" class="btn btn-primary">Cadastrar novo item</a>
+    <a href="adicionar_secao.php" role="button" class="btn btn-primary">Cadastrar novo item</a>
     </center>
 
 </div>

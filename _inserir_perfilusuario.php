@@ -18,7 +18,7 @@ $inserir = mysqli_query($conexao,$sql);
         Perfil cadastrado com sucesso!
     </div>
     <div style="padding-top: 20px">
-    <a href="adicionar_perfilusuario.php" role="button" class="btn btn-primary">Cadastrar novo ítem</a>
+    <a href="adicionar_perfilusuario.php" role="button" class="btn btn-primary">Cadastrar novo item</a>
     </center>
 
 </div>

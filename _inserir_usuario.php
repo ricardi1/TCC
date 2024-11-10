@@ -1,15 +1,17 @@
 <?php
 
 include 'conexao.php';
+include 'script/password.php';
 
 $nome = $_POST['nome'];
 $email = $_POST['email'];
 $senha = $_POST['senha'];
 $dataCriacao = date('Y-m-d');
+$status = 1;
 $PerfilUsuario_idPerfilUsuario = $_POST['PerfilUsuario_idPerfilUsuario'];
 
 
-$sql = "INSERT INTO usuario (nome, email, senha, dataCriacao, PerfilUsuario_idPerfilUsuario) values ('$nome','$email','$senha','$dataCriacao',$PerfilUsuario_idPerfilUsuario)";
+$sql = "INSERT INTO usuario (nome, email, senha, dataCriacao, status, PerfilUsuario_idPerfilUsuario) values ('$nome','$email',sha1('$senha'),'$dataCriacao', $status, $PerfilUsuario_idPerfilUsuario)";
 $inserir = mysqli_query($conexao,$sql);
 
 ?>
@@ -24,7 +26,9 @@ $inserir = mysqli_query($conexao,$sql);
     </div>
 
     <div style="padding-top: 20px">
-    <a href="adicionar_usuario.php" role="button" class="btn btn-primary">Cadastrar novo ítem</a>
+    <a href="adicionar_usuario.php" role="button" class="btn btn-primary">Cadastrar novo item</a>
+    <a class="btn btn-warning" href="usuario.php" role="button">&nbsp;Voltar</a>
     </center>
+    
 
 </div>

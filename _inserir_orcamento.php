@@ -19,7 +19,7 @@ $inserir = mysqli_query($conexao,$sql);
         Orçamento cadastrado com sucesso!
     </div>
     <div style="padding-top: 20px">
-    <a href="adicionar_orcamento.php" role="button" class="btn btn-primary">Cadastrar novo ítem</a>
+    <a href="adicionar_orcamento.php" role="button" class="btn btn-primary">Cadastrar novo item</a>
     </center>
 
 </div>

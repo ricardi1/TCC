@@ -58,9 +58,6 @@
     <div class="container-fluid" style="margin-top: 90px; width: 90%;" >
         <h4>Requisição de Pagamento</h4>
         <br>
-        <div style="text-align: right;">
-            <a class="btn btn-sm btn-success" href="adicionar_requisicaopagamento.php" role="button"><i class="fa-regular fa-file"></i>&nbsp;Novo</a>
-        </div>
         <table class="table table-sm table-hover">
             <thead>
                 <tr>
@@ -76,7 +73,6 @@
                 <th scope="col">Orçamento</th>
                 <th scope="col">Usuário</th>
                 <th scope="col">Centro de Custos</th>
-                <th scope="col">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -109,7 +105,6 @@
                                             usuario.idUsuario = requisicaopagamento.Usuario_idUsuario
                                 LEFT JOIN ccustos ON 
                                             ccustos.idCCustos = requisicaopagamento.CCustos_idCCustos
-                                WHERE requisicaopagamento.status = 0
                                 ORDER BY requisicaopagamento.dataRequisicao";
                         $buscar = mysqli_query($conexao, $sql);
 
@@ -141,9 +136,6 @@
                     <td><?php echo $Orcamento_idOrcamento ?></td>
                     <td><?php echo $Usuario_idUsuario ?></td>
                     <td><?php echo $CCustos_idCCustos ?></td>
-                    <td><a class="btn btn-warning btn-sm" href="editar_requisicaopagamento.php?id=<?php echo $idRequisicaoPagamento ?>" role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa-regular fa-pen-to-square"></i></a>
-
-                        <a class="btn btn-danger btn-sm" href="deletar_requisicaopagamento.php?id=<?php echo $idRequisicaoPagamento ?>" role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa-regular fa-trash-can"></i></a></td>
 
             <?php } ?>
                 </tr>
